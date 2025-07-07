@@ -51,8 +51,15 @@ async def profile_command(interaction: discord.Interaction, player_id:str):
     hex_profile_color = f'#{rgb:06x}'  # Format as 6-digit hex
 
     embedVar = discord.Embed(title=f"{profile["name"]}'s profile", description=profile["tag"], color=discord.Colour.from_str(hex_profile_color))
-    embedVar.add_field(name="Trophies", value=f"Current trophies: {profile["trophies"]}\nHighest trophies: {profile["highestTrophies"]}", inline=False)
-    embedVar.add_field(name="Club:", value=f"{profile["club"]["name"]} ({profile["club"]["tag"]})", inline=False)
+    embedVar.add_field(name="Trophies",
+                       value=f"Current trophies: {profile["trophies"]}\nHighest trophies: {profile["highestTrophies"]}",
+                       inline=False)
+    embedVar.add_field(name="Victories",
+                       value=f"3v3 victories: {profile["3vs3Victories"]}\nShowdown victories: {profile["soloVictories"]+profile["duoVictories"]}",
+                       inline=False)
+    embedVar.add_field(name="Club:",
+                       value=f"{profile["club"]["name"]} ({profile["club"]["tag"]})",
+                       inline=False)
 
     await interaction.response.send_message(embed=embedVar)
 
