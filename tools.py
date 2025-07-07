@@ -1,14 +1,16 @@
 import os
 import requests
+import json
 from dotenv import load_dotenv
 
 load_dotenv()
 
 discord_token = os.getenv('DISCORD_TOKEN')
+app_id=os.getenv('APP_ID')
 
 def create_command(name:str, description:str, options:list):
     TOKEN = discord_token
-    APPLICATION_ID = '1391532735218061474'
+    APPLICATION_ID = app_id
 
     command_data = {
         "name": name,
